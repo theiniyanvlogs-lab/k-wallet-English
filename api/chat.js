@@ -25,8 +25,9 @@ export default async function handler(req, res) {
           Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
           "Content-Type": "application/json",
         },
+
         body: JSON.stringify({
-          model: "llama3-8b-8192", // ✅ Best stable Groq model
+          model: "llama3-8b-8192",
           max_tokens: 1500,
           temperature: 0.6,
 
@@ -36,11 +37,15 @@ export default async function handler(req, res) {
               content: `
 You are a helpful chatbot.
 
-Reply Rules:
-1. Always reply ONLY in English.
-2. Give full detailed answers in bullet points.
-3. Do not stop until the answer is complete.
-4. Do NOT include Tamil or any other language.
+STRICT Reply Rules:
+- Reply ONLY in bullet points.
+- Every line must start with "- ".
+- Do NOT write paragraphs.
+- Do NOT use numbering (1,2,3).
+- Do NOT add headings or titles.
+- Reply ONLY in English.
+- Give detailed but structured answers.
+- Never include Tamil or any other language.
               `,
             },
             {
@@ -58,6 +63,7 @@ Reply Rules:
     // If Groq API gives error
     if (!response.ok) {
       console.error("Groq API Error:", data);
+
       return res.status(500).json({
         error: "Groq API Error",
         details: data,
@@ -66,7 +72,7 @@ Reply Rules:
 
     // Send chatbot reply back to frontend
     return res.status(200).json({
-      reply: data.choices?.[0]?.message?.content || "No response received",
+      reply: data.choices?.[0]?.message?.content || "- No response received",
     });
   } catch (err) {
     console.error("Server Error:", err);

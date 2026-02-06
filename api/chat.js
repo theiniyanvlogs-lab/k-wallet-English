@@ -10,7 +10,6 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Message required" });
     }
 
-    // ✅ Check API Key Exists
     if (!process.env.GROQ_API_KEY) {
       return res.status(500).json({
         error: "Missing GROQ_API_KEY in Vercel Environment Variables",
@@ -26,7 +25,7 @@ export default async function handler(req, res) {
           Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
         },
         body: JSON.stringify({
-          model: "llama3-8b-8192",
+          model: "llama-3.1-8b-instant", // ✅ Supported model
           messages: [
             {
               role: "system",
@@ -41,10 +40,7 @@ export default async function handler(req, res) {
 
     const data = await response.json();
 
-    // ✅ Show real Groq error
     if (!response.ok) {
-      console.log("Groq Error Response:", data);
-
       return res.status(500).json({
         error: data.error?.message || "Groq API failed",
       });

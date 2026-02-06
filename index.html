@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Talkies Chatbot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="topbar">
+    <div class="logo">
+      <span class="icon">🎁</span>
+      <div>
+        <h1>iniyan.talkies K'wallet Globe</h1>
+        <p>ENGLISH REPLY ONLY</p>
+      </div>
+    </div>
+
+    <div class="status">
+      <span class="dot blue"></span> LOCALIZED
+      <span class="dot green"></span> AI ONLINE
+
+      <!-- Clear Chat Button -->
+      <button class="clear-btn" onclick="clearChat()">Clear Chat</button>
+    </div>
+  </header>
+
+  <!-- CHAT AREA -->
+  <main class="chat-area" id="chatBox">
+    <!-- Chat messages will appear here -->
+  </main>
+
+  <!-- INPUT BOX -->
+  <footer class="input-bar">
+    <input type="text" id="userInput" placeholder="Type your message..." />
+    <button onclick="sendMessage()">➤</button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

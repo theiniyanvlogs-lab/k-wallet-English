@@ -6,6 +6,7 @@
   <title>Talkies Chatbot</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- HEADER -->
@@ -34,10 +35,20 @@
 
   <!-- INPUT BOX -->
   <footer class="input-bar">
+    
+    <!-- Text Input -->
     <input type="text" id="userInput" placeholder="Type your message..." />
-    <button onclick="sendMessage()">➤</button>
+
+    <!-- Voice Input Button -->
+    <button class="voice-btn" onclick="startVoice()">🎤</button>
+
+    <!-- Send Button -->
+    <button class="send-btn" onclick="sendMessage()">➤</button>
+
   </footer>
 
+  <!-- Script File -->
   <script src="script.js"></script>
+
 </body>
 </html>

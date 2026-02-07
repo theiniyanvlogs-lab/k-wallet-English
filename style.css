@@ -144,3 +144,27 @@ body {
 .input-bar button:hover {
   opacity: 0.8;
 }
+
+/* =============================== */
+/* 🎤 Voice Input Button Styling   */
+/* =============================== */
+
+.voice-btn {
+  background: #222 !important;
+  border: 1px solid #444;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.voice-btn:hover {
+  background: #333 !important;
+  transform: scale(1.05);
+}
+
+/* Optional: Mic Listening Effect */
+.voice-btn.listening {
+  background: crimson !important;
+  border-color: red;
+}

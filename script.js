@@ -83,6 +83,51 @@ async function sendMessage() {
 }
 
 // ===============================
+// ✅ Voice Input Function (🎤 Added)
+// ===============================
+function startVoice() {
+
+  // Check Browser Support
+  if (!("webkitSpeechRecognition" in window)) {
+    alert("❌ Voice recognition not supported in this browser.");
+    return;
+  }
+
+  let recognition = new webkitSpeechRecognition();
+
+  // Language Setting
+  recognition.lang = "en-US";
+
+  // Start Voice Listening
+  recognition.start();
+
+  // Show Listening Status
+  document.getElementById("userInput").placeholder = "🎤 Listening... Speak now";
+
+  // When Voice Result Comes
+  recognition.onresult = function (event) {
+    let voiceText = event.results[0][0].transcript;
+
+    // Put Voice Text into Input Box
+    document.getElementById("userInput").value = voiceText;
+
+    // Restore Placeholder
+    document.getElementById("userInput").placeholder = "Type your message...";
+  };
+
+  // Error Handling
+  recognition.onerror = function () {
+    alert("⚠️ Voice input error. Try again.");
+    document.getElementById("userInput").placeholder = "Type your message...";
+  };
+
+  // When Voice Stops
+  recognition.onend = function () {
+    document.getElementById("userInput").placeholder = "Type your message...";
+  };
+}
+
+// ===============================
 // ✅ Clear Chat Button Function
 // ===============================
 function clearChat() {
